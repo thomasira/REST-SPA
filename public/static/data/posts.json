@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "title": "title 1",
+        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis a cumque molestias porro dignissimos dolorem aut ab, laudantium vero tenetur repellat, ad animi eius. Quos eum nulla tenetur perferendis sunt.",
+        "author": "Peter"
+    },
+    {
+        "id": 2,
+        "title": "title 2",
+        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis a cumque molestias porro dignissimos dolorem aut ab, laudantium vero tenetur repellat, ad animi eius. Quos eum nulla tenetur perferendis sunt.",
+        "author": "Lisa"
+    },
+    {
+        "id": 3,
+        "title": "title 3",
+        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis a cumque molestias porro dignissimos dolorem aut ab, laudantium vero tenetur repellat, ad animi eius. Quos eum nulla tenetur perferendis sunt.",
+        "author": "John"
+    }
+]

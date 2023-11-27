@@ -1,0 +1,26 @@
+nav{
+    display: flex;
+    flex-flow: column;
+    gap: var(--gaps);
+    position: fixed;
+    padding: var(--gapm) 0;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background: var(--colorNav);
+    width: var(--nav-width);
+
+    & a{
+        color: var(--colorDark);
+        font-weight: 600;
+        font-size: var(--fontxs);
+        width:100%;
+        padding: var(--gapTHxxs) var(--gapxs);
+
+
+        &:hover{
+            background-color: var(--colorTransp);
+            color: var(--colorLight);
+        }
+    }
+}
