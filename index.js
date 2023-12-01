@@ -9,6 +9,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 app.use('/static', express.static(path.resolve(__dirname, 'public', 'static')));
+
 app.get('/*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
 });

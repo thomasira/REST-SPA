@@ -1,5 +1,5 @@
 
-import AbstractView from './AbstractView.js';
+import AbstractView from "./AbstractView.js";
 
 export default class extends AbstractView{
 
@@ -9,7 +9,7 @@ export default class extends AbstractView{
     }
 
     init() {
-        this.setTitle('Posts');
+        this.setTitle('Post-view');
     }
 
     async getHTML() {
@@ -18,14 +18,14 @@ export default class extends AbstractView{
             return response.json();
         }
         const data = await getData('/static/data/posts.json');
-        let listPosts = '<ul>';
-        data.forEach(item => {
-            listPosts += `<li><a href='/post-view/${item.id}' data-link>${item.title}</a></li>`;
-        });
-        listPosts += '</ul>';
-
+        const postId = Number(this.params.id)
+        const post = data.find(post => post.id === postId);
+        
         return `
-        <h1>List of Posts</h1>
-        ${listPosts}`;
+        <h1>${post.title}</h1>
+        <p>${post.description}</p>
+        <cite>${post.author}</cite>
+        <a href='/posts' data-link>Back</a>
+        `;
     }
 }

@@ -1,12 +1,21 @@
 import Dashboard from "./views/Dashboard.js";
 import Post from "./views/Post.js";
+import PostView from "./views/PostView.js";
 import Settings from "./views/Settings.js";
+
+const pathToRegex = path => new RegExp("^" + path.replace(/\//g, '\\/').replace(/:\w+/g, '(.+)') + '$');
+const getParams = match => {
+    const values = match.isMatch.slice(1);
+    const keys = Array.from(match.route.path.matchAll(/:(\w+)/g)).map(isMatch => isMatch[1]);
+    return Object.fromEntries(keys.map((key, i) => { return [key, values[i]] }));
+}
 
 const router = async () => {
 
     const routes = [
         { path: "/", view: Dashboard },
         { path: "/posts", view: Post },
+        { path: "/post-view/:id", view: PostView },
         { path: "/settings", view: Settings },
     ];
 
@@ -14,7 +23,7 @@ const router = async () => {
     const potentialMatches = routes.map(route => {
         return {
             route: route,
-            isMatch: location.pathname === route.path
+            isMatch: location.pathname.match(pathToRegex(route.path))
         }
     });
     
@@ -23,20 +32,21 @@ const router = async () => {
     if(!match) {
         match = {
             route: routes[0],
-            isMatch: true
+            isMatch: [location.pathname]
         }
     }
 
     // 1.4 inject view into DOM
-    const view = new match.route.view;
+    const view = new match.route.view(getParams(match));
     document.querySelector("#app").innerHTML = await view.getHTML();
 }
 
-//2 push url into browser 
+//2 push url into browser and history
 const navigateTo = url => {
     history.pushState(null, null, url);
     router();
 }
+window.addEventListener('popstate', router);
 
 //3 run the router in interactions
 document.addEventListener("DOMContentLoaded", () => {
